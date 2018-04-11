@@ -1,29 +1,41 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Stan's Weather</title>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  </head>
-  <body>
-  <h1>Stan's Current Weather Service</h1>
-  <h3>Get started by entering your city below!</h3>
-    <div class="container">
-      <fieldset>
-        <form action="/" method="post">
-          <input name="city" type="text" placeholder="Enter a City" required>
-          <input type="submit" value="Get Current Weather">
-        </form>
-		 
-		
-        <% if(weather !== null){ %>
-          <p><%- weather %></p>
-        <% } %>
+ <head>
+   <meta charset="utf-8">
+   <title>Stan's Weather</title>
+   <link rel="stylesheet" type="text/css" href="/css/styles.css">
+   <script>
+     function updateTimes(d1, d2, d3){
+         document.getElementById('lastUpdated').innerHTML = new Date(d1);
+         document.getElementById('sunrise').innerHTML = new Date(d2);
+         document.getElementById('sunset').innerHTML = new Date(d3);
+    }
+ </script>
+</head>
+<body>
+ <h1>Stan's Current Weather Service</h1>
+ <h3>Get started by entering your city below!</h3>
+   <div class="container">
+     <fieldset>
+       <form action="/" method="post">
+         <input name="city" type="text" placeholder="Enter a City" required>
+         <input type="submit" value="Get Current Weather">
+       </form>
+        
+        
+       <% if(weather !== null){ %>
+         <p><%- weather %></p>
+         <script>updateTimes('<%= lastUpdated %>', '<%= sunrise %>', '<%= sunset %>')</script>
+   
+       <% } %>
 
-        <% if(error !== null){ %>
-          <p><%= error %></p>
-        <% } %>
-      </fieldset>
-    </div>
-  </body>
+       
+
+       <% if(error !== null){ %>
+         <p><%= error %></p>
+       <% } %>
+     </fieldset>
+   </div>
+   
+ </body>
 </html>

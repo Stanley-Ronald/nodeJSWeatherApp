@@ -27,26 +27,32 @@ app.post('/', function (req, res) {
       if(weather.main == undefined){
         res.render('index', {weather: null, error: 'Error, please try again'});
       } else {
-        var weatherText = "Current Weather Conditions for " + weather.name + ":" +
-                   '<br>' + " Current Time: " + dateFromNum(weather.dt) +
+
+               var weatherText = "Current Weather Conditions for " + weather.name + ":" +
+                   '<br>' + " Current Time: <span id='lastUpdated'></span>" +
                    '<br>' + " Temperature: " + weather.main.temp + " degrees &#8457;" +
                    '<br>' + "Pressure: " + weather.main.pressure + " mmHg" +
                    '<br>' + " Humidity: " + weather.main.humidity + " %" +
                    '<br>' + " Wind Speed: " + weather.wind.speed + " mph" +
                    '<br>' + " Wind Direction: " + weather.wind.deg + " &#176;" +
                    '<br>' + " Cloudiness: " + weather.clouds.all + " %" +
-                   '<br>' + " Sunrise: " + dateFromNum(weather.sys.sunrise) +
-                   '<br>' + " Sunset: " + dateFromNum(weather.sys.sunset)
-		
-		
-        res.render('index', {weather: weatherText, error: null});
-      }
+                   '<br>' + " Sunrise: <span id='sunrise'></span>" +
+                   '<br>' + " Sunset: <span id='sunset'></span>"
+
+               res.render('index', {
+                   weather: weatherText,
+                   lastUpdated: dateFromNum(weather.dt),
+                   sunrise: dateFromNum(weather.sys.sunrise),
+                   sunset: dateFromNum(weather.sys.sunset),
+                   error: null
+               });
+           }
     }
   });
 })
 
-app.listen(process.env.PORT || '3000');
+//app.listen(process.env.PORT || '3000');
 
-//app.listen(3000, function () {
-  //console.log('Example app listening on port 3000!')
-//})
+app.listen(3000, function () {
+  console.log('Example app listening on port 3000!')
+})
