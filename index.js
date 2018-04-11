@@ -47,7 +47,8 @@ app.post('/', function (req, res) {
 		'<br>' + " Wind Speed: " + weather.wind.speed + " mph" +
 		'<br>' + " Wind Direction: " + weather.wind.deg + " &#176;" +
 		'<br>' + " Cloudiness: " + weather.clouds.all + " %" +
-		'<br>' + " Sunrise: " + event1.toLocaleTimeString('en-US') 
+		'<br>' + " Sunrise: " + event1.toLocaleTimeString('en-US') +
+		'<br>' + " Sunset: " + event1.toLocaleTimeString('en-US')
 		
 		
 		
